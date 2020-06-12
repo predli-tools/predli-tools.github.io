@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predli - Dashboard</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <link href="js/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet" />
+    <link href="js/plugins/chartist-js/dist/chartist-init.css" rel="stylesheet" />
+    <link href="js/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+        rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/c4124ecb75.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="grid">
+        <nav id="sidebar" class="active">
+            <div class="side-logo"></div>
+            <ul class="list-unstyled components" style="margin-top: 20px;">
+                <li>
+                    <a href="index.html"><i class="fas fa-chart-area"></i>Dashboard</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-poll-h"></i>
+                        Surveys</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-project-diagram"></i></i>Projects</a>
+                </li>
+
+
+                <li>
+                    <a href="#"><i class="fas fa-user" aria-hidden="true"></i>New Users</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-sliders-h" aria-hidden="true"></i>Settings</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="sidebar-inv" class="active"></div>
+
+
+        <div class="header">
+
+            <div class="header__item">
+                <button type="button" id="sidebarCollapse" class="navbar-btn active">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+
+                </button>
+            </div>
+            <div class="header__item">
+                <div class="heading">PREDLI DASHBOARD</div>
+            </div>
+
+        </div>
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card" id="prallelgraph">
+                        <div class="about">
+                            <h3>Breakdown of Program</h3>
+                            <p class="lead"></p>
+                        </div>
+                        <div id="pll-graph"></div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="about">
+                            <h3>Filters</h3>
+                            <p class="lead"></p>
+                        </div>
+                        <div class="row">
+                            <div style="padding: 20px;">
+                                <h6>Weeks</h6>
+                                <input type="checkbox" class="checkbox" data-target="Week" value="Week_1"><label
+                                    style="padding-left: 10px;"> Week 1</label><br>
+                                <input type="checkbox" class="checkbox" data-target="Week" value="Week_2"><label
+                                    style="padding-left: 10px;"> Week 2</label><br>
+                                <input type="checkbox" class="checkbox" data-target="Week" value="Week_3"><label
+                                    style="padding-left: 10px;"> Week 3</label><br>
+                                <input type="checkbox" class="checkbox" data-target="Week" value="Week_4" checked><label
+                                    style="padding-left: 10px;"> Week 4</label><br>
+                            </div>
+
+                            <div style="padding: 20px;">
+                                <h6>Departments</h6>
+                                <input type="checkbox" class="checkbox" data-target="Department" value="IT"
+                                    checked><label style="padding-left: 10px;">IT Department</label><br>
+                                <input type="checkbox" class="checkbox" data-target="Department" value="HR"
+                                    checked><label style="padding-left: 10px;"> HR Department</label><br>
+                                <input type="checkbox" class="checkbox" data-target="Department" value="Sales"
+                                    checked><label style="padding-left: 10px;"> Sales Department</label><br>
+                                <input type="checkbox" class="checkbox" data-target="Department" value="Marketing"
+                                    checked><label style="padding-left: 10px;"> Marketing Department</label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="about">
+                            <h3>Execution Capabilities & Cultural Fit</h3>
+                            <p class="lead"></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" id="scattergraph">
+                                <div id="scttr-graph"></div>
+                                <div class="border-top my-3"></div>
+                                <div style="margin: auto; text-align: center;">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <h6 style="color: #F8766D; font-size: 14px;"><i
+                                                    class="fa fa-circle font-10 m-r-10"
+                                                    style="padding-right: 5px"></i>IT
+                                                Department</h6>
+                                        </li>
+                                        <li>
+                                            <h6 style="color: #1fff0a; font-size: 14px;"><i
+                                                    class="fa fa-circle font-10 m-r-10"
+                                                    style="padding-right: 5px"></i>HR
+                                                Department</h6>
+                                        </li>
+                                        <li>
+                                            <h6 style="color: #619CFF; font-size: 14px;"><i
+                                                    class="fa fa-circle font-10 m-r-10"
+                                                    style="padding-right: 5px"></i>Sales
+                                                Department</h6>
+                                        </li>
+                                        <li>
+                                            <h6 style="color: #00BC18; font-size: 14px;"><i
+                                                    class="fa fa-circle font-10 m-r-10"
+                                                    style="padding-right: 5px"></i>Marketing Department</h6>
+                                        </li>
+                                        <li>
+                                            <h6 style="color: #ff0ae7; font-size: 14px;"><i
+                                                    class="fa fa-circle font-10 m-r-10"
+                                                    style="padding-right: 5px"></i>Other
+                                            </h6>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <div class=" row">
+
+                                        <div style="padding: 20px;">
+                                            <h6>Departments</h6>
+                                            <input type="checkbox" class="dptcheckbox" data-target="Department"
+                                                value="IT" checked><label
+                                                style="padding-left: 10px; padding-right: 18px;">IT
+                                                Department</label>
+                                            <input type="checkbox" class="dptcheckbox" data-target="Department"
+                                                value="HR" checked><label
+                                                style="padding-left: 10px; padding-right: 18px;"> HR
+                                                Department</label>
+                                            <input type="checkbox" class="dptcheckbox" data-target="Department"
+                                                value="Sales" checked><label
+                                                style="padding-left: 10px; padding-right: 18px;"> Sales
+                                                Department</label>
+                                            <input type="checkbox" class="dptcheckbox" data-target="Department"
+                                                value="Marketing" checked><label
+                                                style="padding-left: 10px; padding-right: 18px;"> Marketing
+                                                Department</label>
+                                            <input type="checkbox" class="dptcheckbox" data-target="Department"
+                                                value="Other" checked><label
+                                                style="padding-left: 10px; padding-right: 18px;"> Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-top my-3"></div>
+                                <div class="score" style="text-align: center; margin-bottom: 20px;">
+                                    <h5>Total Program Score</h5>
+                                    <span style="color: rgb(89, 138, 89); font-size: 40px; font-weight: 600;">
+                                        <i class="fab fa-pagelines"></i>
+                                        68
+                                    </span>
+                                </div>
+                                <h5>Summary</h4>
+                                    <ul class="graph-info">
+                                        <li>
+                                            The perceived capabilities
+                                            (Pre-Survey) are the very aligned
+                                            with the actual output, but
+                                            Execution Capabilities and Cultural
+                                            Fit higher than perceived.
+                                        </li>
+                                        <li>
+                                            Both Execution Capabilities and
+                                            Cultural Fit need to improve to
+                                            deliver the company’s aspirations.
+                                        </li>
+                                        <li>
+                                            Indication is that Execution
+                                            Capabilities and Cultural Fit need
+                                            almost 100% improvement.
+                                        </li>
+                                    </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="about">
+                            <h3>Pre-survey Traits / Actual Results</h3>
+                            <p class="lead"></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mt-5" style="padding-left: 40px;">
+
+                                <h5>Summary</h4>
+                                    <h6>Pre-survey Traits plotted
+                                        against Actual Results</h6>
+                                    <ul class="graph-info">
+                                        <li>
+                                            The pre-survey is underestimating the
+                                            capability for all traits measured
+                                        </li>
+                                        <li>
+                                            Scored higher in all trait categories, than
+                                            the pre-survey indicated.
+                                        </li>
+                                        <li>
+                                            Resilience, Diversity, and Comfort Zone -
+                                            closest to pre-survey results
+                                        </li>
+                                        <li>
+                                            Alignment - ability not to over engineer;
+                                            allocate resources.
+                                        </li>
+                                        <li>
+                                            Evident that the team needs to recognize
+                                            the individual skills within the workgroup.
+                                        </li>
+                                        <li>
+                                            Indication is that Execution
+                                            Capabilities and Cultural Fit need
+                                            almost 100% improvement.
+                                        </li>
+                                    </ul>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="radarChart"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="about">
+                                    <div class="d-flex flex-wrap">
+                                        <div>
+                                            <h3 class="card-title">Scores Overview</h3>
+                                        </div>
+                                        <div style="margin: auto; margin-right: 0;">
+                                            <ul class="list-inline">
+                                                <li>
+                                                    <h6 style="color: #F8766D; font-size: 14px;"><i
+                                                            class="fa fa-circle font-10 m-r-10"
+                                                            style="padding-right: 5px"></i>IT
+                                                        Department</h6>
+                                                </li>
+                                                <li>
+                                                    <h6 style="color: #1fff0a; font-size: 14px;"><i
+                                                            class="fa fa-circle font-10 m-r-10"
+                                                            style="padding-right: 5px"></i>HR
+                                                        Department</h6>
+                                                </li>
+                                                <li>
+                                                    <h6 style="color: #619CFF; font-size: 14px;"><i
+                                                            class="fa fa-circle font-10 m-r-10"
+                                                            style="padding-right: 5px"></i>Sales
+                                                        Department</h6>
+                                                </li>
+                                                <li>
+                                                    <h6 style="color: #00BC18; font-size: 14px;"><i
+                                                            class="fa fa-circle font-10 m-r-10"
+                                                            style="padding-right: 5px"></i>Marketing Department</h6>
+                                                </li>
+                                                <li>
+                                                    <h6 style="color: #ff0ae7; font-size: 14px;"><i
+                                                            class="fa fa-circle font-10 m-r-10"
+                                                            style="padding-right: 5px"></i>Other
+                                                    </h6>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="score" style="text-align: center; margin-bottom: 20px;">
+                                    <h5>Program Execution Score</h5>
+                                    <span style="color: rgb(89, 138, 89); font-size: 40px; font-weight: 600;">
+                                        <i class="fab fa-canadian-maple-leaf"></i>
+                                        56
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="amp-pxl" style="height: 360px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/graphs/parallel.js"></script>
+<script src="js/graphs/scatter.js"></script>
+<script src="js/graphs/radarChart.js"></script>
+<script src="js/graphs/barChart.js"></script>
+<script src="js/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+<script src="js/plugins/chartist-js/dist/chartist.min.js"></script>
+<script src="js/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $('#sidebar-inv').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+    });
+    /* Radar chart design created by Nadieh Bremer - VisualCinnamon.com */
+
+    ////////////////////////////////////////////////////////////// 
+    //////////////////////// Set-Up ////////////////////////////// 
+    ////////////////////////////////////////////////////////////// 
+
+    var rdr_margin = { top: 100, right: 100, bottom: 100, left: 100 },
+        rdr_width = document.getElementById("scattergraph").offsetWidth - 100 - rdr_margin.left - rdr_margin.right,
+        rdr_height = rdr_width
+
+    ////////////////////////////////////////////////////////////// 
+    ////////////////////////// Data ////////////////////////////// 
+    ////////////////////////////////////////////////////////////// 
+
+    var data = [
+        [
+            { axis: "Trait 1", value: 8 },
+            { axis: "Trait 2", value: 8 },
+            { axis: "Trait 3", value: 9 },
+            { axis: "Trait 4", value: 7 },
+            { axis: "Trait 5", value: 2 },
+            { axis: "Trait 6", value: 6 },
+            { axis: "Trait 7", value: 10 },
+        ], [
+            { axis: "Trait 1", value: 4 },
+            { axis: "Trait 2", value: 6 },
+            { axis: "Trait 3", value: 9 },
+            { axis: "Trait 4", value: 7 },
+            { axis: "Trait 5", value: 7 },
+            { axis: "Trait 6", value: 1 },
+            { axis: "Trait 7", value: 8 },
+        ]
+    ];
+    ////////////////////////////////////////////////////////////// 
+    //////////////////// Draw the Chart ////////////////////////// 
+    ////////////////////////////////////////////////////////////// 
+
+    var color = d3.scale.ordinal()
+        .range(["#EDC951", "#CC333F", "#00A0B0"]);
+
+    var radarChartOptions = {
+        w: rdr_width,
+        h: rdr_height,
+        margin: rdr_margin,
+        maxValue: 10,
+        levels: 10,
+        roundStrokes: false,
+        color: color
+    };
+    //Call function to draw the Radar chart
+    RadarChart(".radarChart", data, radarChartOptions);
+</script>
+
+</html>
